@@ -3,7 +3,7 @@
 	<article>
 		<div class="title">
 			<h1 class="title">{{ .Title }}</h1>
-			<div class="meta">Posted on {{ dateFormat "2 Jan 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</div>
+			<div class="meta">{{ dateFormat "2 Jan 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</div>
 		</div>
 		{{ if isset .Params "tldr" }}
 		<div class="tldr">
@@ -14,6 +14,8 @@
 		<section class="body">
 			{{ .Content }}
 		</section>
+
+		<h2>Tags</h2>
 
 		<div class="post-tags">
 			{{ if ne .Type "page" }}
