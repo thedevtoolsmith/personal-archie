@@ -25,16 +25,17 @@
        url('../fonts/jetbrains-mono-v11-latin-regular.svg#JetBrainsMono') format('svg'); /* Legacy iOS */
 }
 
-/* space-mono-regular - latin */
 @font-face {
-  font-family: 'Space Mono';
+  font-family: 'Gopher Mono';
   font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/space-mono-v10-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local(''),
-       url('../fonts/space-mono-v10-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../fonts/space-mono-v10-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../fonts/space-mono-v10-latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('../fonts/space-mono-v10-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('../fonts/space-mono-v10-latin-regular.svg#SpaceMono') format('svg'); /* Legacy iOS */
+  src: url('../fonts/GopherMono-Regular.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/GopherMono-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('../fonts/GopherMono-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+      url('../fonts/GopherMono-Regular.woff') format('woff'), /* Modern Browsers */
+      url('../fonts/GopherMono-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+      url('../fonts/GopherMono-Regular.svg#GopherMono-Regular') format('svg'); /* Legacy iOS */
+  
 }
+
+
+
