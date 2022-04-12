@@ -4,7 +4,7 @@ body {
 }
 
 ::-moz-selection {
-  background: blue;
+  background: rgba(0, 0, 255, 0.792);
   color: #fff;
   text-shadow: none;
 }
@@ -16,7 +16,7 @@ body {
 }
 
 hr {
-  border-top: 3px dotted blue;
+  border-top: 3px dotted rgba(0, 0, 255, 0.792);
 }
 code {
   background-color: lightblue;
@@ -31,7 +31,7 @@ pre {
   padding: 1em;
 }
 blockquote {
-  border-color: blue;
+  border-color: rgba(0, 0, 255, 0.792);
 }
 
 h1,
@@ -109,7 +109,7 @@ a:hover {
 }
 .draft-label {
   color: var(--darkMaincolor);
-  background-color: blue;
+  background-color: rgba(0, 0, 255, 0.792);
 }
 .highlight pre code[class=language-javaScript]::before,
 .highlight pre code[class="language-js"]::before {
@@ -138,7 +138,7 @@ a:hover {
 .highlight pre code[class*='language-python']::before,
 .highlight pre code[class*='language-py']::before {
   content: 'py';
-  background: blue;
+  background: rgba(0, 0, 255, 0.792);
   color: yellow ;
 }
 .highlight pre code[class*='language-css']::before{
