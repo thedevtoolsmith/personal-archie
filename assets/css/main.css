@@ -222,7 +222,7 @@ article .title {
 
 /* Callout */
 .callout {
-  background-color: var(--maincolor);
+  background-color: var(--callouctcolor);
   color: #fff;
   padding: 1em;
 }
@@ -237,7 +237,7 @@ article .title {
 
 .callout a:hover {
   background-color: #fff;
-  color: var(--maincolor);
+  color: var(--callouctcolor);
 }
 
 .site-description {

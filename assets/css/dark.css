@@ -91,26 +91,6 @@ a:hover {
   color: black;
 }
 
-/* Callout */
-.callout {
-  background-color: var(--darkMaincolor);
-  color: #fff;
-  padding: 1em;
-}
-
-.callout p {
-  margin: 0;
-}
-
-.callout a {
-  border-bottom: 3px solid #fff;
-}
-
-.callout a:hover {
-  background-color: #fff;
-  color: var(--darkMaincolor);
-}
-
 .site-description a {
   color: #ddd;
 }
