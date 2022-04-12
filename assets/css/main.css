@@ -56,7 +56,7 @@ a {
 }
 
 a:hover {
-  background-color: var(--hovercolor);
+  background-color: var(--maincolor);
   color: #fff;
 }
 
@@ -221,13 +221,12 @@ article .title {
 
 /* Callout */
 .callout {
-  background-color: var(--callouctcolor);
+  background-color: var(--maincolor);
   color: #fff;
   padding: 1em;
 }
 
 .callout p {
-  font-family: 'JetBrains Mono', monospace;
   margin: 0;
 }
 
@@ -237,7 +236,7 @@ article .title {
 
 .callout a:hover {
   background-color: #fff;
-  color: var(--callouctcolor);
+  color: var(--maincolor);
 }
 
 .site-description {
@@ -255,7 +254,7 @@ article .title {
 
 .tags a:hover {
   color: white;
-  background-color: var(--hovercolor);
+  background-color: var(--maincolor);
 }
 
 svg {
