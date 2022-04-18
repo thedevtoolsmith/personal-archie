@@ -21,9 +21,9 @@ hr {
 }
 
 code {
-  background-color: lightblue;
-  color: black;
-  text-decoration: bold;
+  /* background-color: rgba(255, 0, 0, 0.461); */
+  /* color: black; */
+  font-family: "JetBrains Mono", monospace;
   padding: 0.1em 0.2em;
 }
 
