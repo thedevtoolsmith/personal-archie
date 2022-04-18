@@ -110,7 +110,7 @@ figure h4::before {
 /* Code blocks */
 code {
   font-family: "JetBrains Mono", monospace;
-  background-color: #f1f1f122;
+  background-color: #0b0a0a50;
   padding: .1em .2em;
 }
 
