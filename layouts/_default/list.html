@@ -8,9 +8,14 @@
 <ul class="posts">
 	{{- range .Data.Pages -}}
 		{{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
-		<li class="post">
-			<a href="{{ .RelPermalink }}">{{.Title}}</a> <span class="meta">{{ dateFormat "2 Jan 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
-		</li>
+		<section class="list-item">
+            <h1 class="title"><a href="{{ .RelPermalink }}">{{.Title}}</a></h1>
+            <time>{{ dateFormat "2 Jan 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</time>
+            <br><div class="description">
+                {{ .Summary }}
+            </div>
+            <a href="{{ .RelPermalink }}">Read more⟶</a>
+        </section>
 		{{- end -}}
 	{{- end -}}
 </ul>
