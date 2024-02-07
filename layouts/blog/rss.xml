@@ -77,7 +77,7 @@
       {{end}}
       <guid>{{ .Permalink }}</guid>
       <description>{{ with .Description | safeHTML }}{{ . }}{{ else }}{{ .Summary | safeHTML }}{{ end -}}</description>
-      <content:encoded>{{ .Content | safeHTML }}</content:encoded>
+      <content:encoded>{{ (printf "<![CDATA[%s]]>" .Content) | safeHTML }}</content:encoded>
     </item>
     {{ end }}
   </channel>
