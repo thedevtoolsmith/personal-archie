@@ -1,7 +1,7 @@
 {{ define "main" }}
 <h1 class="page-title">Blog</h1>
 
-<!-- <ul class="posts">
+<ul class="posts">
     {{- range .Data.Pages -}} {{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
     <section class="list-item">
         <h1 class="title"><a href="{{ .RelPermalink }}">{{.Title}}</a></h1>
@@ -9,18 +9,6 @@
         <br />
         <div class="description">{{ .Summary }}</div>
     </section>
-    {{- end -}} {{- end -}}
-</ul> -->
-
-<ul class="posts">
-    {{- range .Data.Pages -}} {{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
-    <li class="post">
-        <a href="{{ .RelPermalink }}">{{.Title}}</a>
-        <time>{{ dateFormat "2 Jan 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</time>
-        <br />
-        <div class="description">{{ .Summary }}</div>
-        <br />
-    </li>
     {{- end -}} {{- end -}}
 </ul>
 {{ end }}
