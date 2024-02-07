@@ -1,18 +1,12 @@
 {{ define "main" }}
 <h1 class="page-title">Newsletter</h1>
 
-
 <ul class="posts">
-	{{- range .Data.Pages -}}
-		{{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
-		<section class="list-item">
-            <h1 class="title"><a href="{{ .RelPermalink }}">{{.Title}}</a></h1>
-            <time>{{ dateFormat "2 Jan 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</time>
-            <br><div class="description">
-                {{ .Summary }}
-            </div>
-        </section>
-		{{- end -}}
-	{{- end -}}
+    {{- range .Data.Pages -}} {{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
+    <li class="post">
+        <a href="{{ .RelPermalink }}">{{.Title}}</a>
+        <time>{{ dateFormat "2 Jan 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</time>
+    </li>
+    {{- end -}} {{- end -}}
 </ul>
 {{ end }}
