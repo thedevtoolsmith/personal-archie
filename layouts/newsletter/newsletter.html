@@ -1,0 +1,14 @@
+{{ define "main" }}
+<h1 class="page-title">Newsletter</h1>
+
+<p>This is a weekly summary of all the content I have consume and my opinions about it. As the name suggests, I devised this as a mechanism to hold myself accountable to learn something new everyday.</p>
+
+<ul class="posts">
+    {{- range .Data.Pages -}} {{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
+    <li class="post">
+        <a href="{{ .RelPermalink }}">{{.Title}}</a>
+        <time>{{ dateFormat "2 Jan 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</time>
+    </li>
+    {{- end -}} {{- end -}}
+</ul>
+{{ end }}
