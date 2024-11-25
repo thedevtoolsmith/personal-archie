@@ -6,7 +6,7 @@
     --hovercolor: #ff0000d6;
     --darkMaincolor: #bd93f9;
     --darkBlue: dodgerblue;
-    --font-family: "Berkley Mono", monospace;
+    --font-family: "Courier Prime", monospace;
 }
 
 html {
@@ -111,7 +111,7 @@ figure h4::before {
 
 /* Code blocks */
 code {
-    font-family: "JetBrains Mono", monospace;
+    font-family: "Monaspace Neon", monospace;
     background-color: #0b0a0a50;
     padding: 0.1em 0.2em;
 }
@@ -229,7 +229,7 @@ article .title {
 }
 
 .callout p {
-    font-family: "JetBrains Mono", monospace;
+    font-family: "Monaspace Neon", monospace;
     margin: 0;
 }
 
@@ -297,4 +297,18 @@ table th {
 table td {
     padding: 6px 13px;
     border: 1px solid #dfe2e5;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-header .title {
+    margin: 0;
+}
+
+.post-header time {
+    margin: 0;
 }
