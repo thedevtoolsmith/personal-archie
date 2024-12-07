@@ -248,7 +248,10 @@ article .title {
 }
 
 .tags li::before {
-    content: "🏷 ";
+    font-family: "Phosphor-Bold";
+    content: "\e672";
+    display: inline-block;
+    margin-right: 0.3em;
 }
 
 .tags a {
