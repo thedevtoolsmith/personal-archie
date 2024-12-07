@@ -1,14 +1,7 @@
 <footer>
       <hr>
       {{- range $index, $key := .Site.Params.Social -}}
-       <a class="soc" href="{{ $key.url }}" title="{{ $key.name }}"><i class="ph-bold ph-{{ $key.icon }}"></i></a> |&nbsp;
+      <a class="soc" href="{{ $key.url }}" title="{{ $key.name }}"><i class="ph-bold ph-{{ $key.icon }}"></i></a>
+      |&nbsp;
       {{- end -}}
-            <!-- {{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . }} | {{ end }} -->
-      </footer>
-      
-      {{- if (isset .Site.Params "social") -}}
-      <!-- <script>
-            feather.replace()
-      </script> -->
-      {{- end -}}
-      
+</footer>
