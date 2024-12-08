@@ -247,11 +247,17 @@ article .title {
     justify-content: space-between;
 }
 
-.tags li::before {
+.tag-cloud .tags li::before {
     font-family: "Phosphor-Bold";
     content: "\e672";
     display: inline-block;
     margin-right: 0.3em;
+}
+
+.tags li::before {
+    font-family: "Phosphor-Bold";
+    content: "\e672 ";
+    margin-right: 0.4em;
 }
 
 .tags a {
