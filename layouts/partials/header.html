@@ -52,7 +52,7 @@
 		  {{- end }}
 		  {{- end }}
 
-		  {{- if isset .Site.Params "umami-id" }}
-		  <script defer src="https://cloud.umami.is/script.js" data-website-id="{{.Site.Params.umami-id}}"></script>
+		  {{- if isset .Site.Params "umamiid" }}
+		  <script defer src="https://cloud.umami.is/script.js" data-website-id="{{.Site.Params.umamiid}}"></script>
 		  {{- end }}
 		  </head>
