@@ -1,6 +1,6 @@
 {{ define "main" }}
 <h1 class="page-title">Blog</h1>
-<p>A collection of everything I have written.</p>
+<p>A collection of all blog posts I have written.</p>
 <ul class="posts">
     {{- range .Data.Pages -}} {{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
     <section class="list-item">

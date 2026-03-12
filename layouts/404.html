@@ -1,0 +1,59 @@
+{{ define "main" }}
+{{ $entries := where (where .Site.RegularPages "Section" "in" (slice "blog" "stash")) "Title" "ne" "" }}
+<main class="not-found-page">
+    <article class="not-found-card">
+        <p class="not-found-code">404</p>
+        <h1 class="not-found-title">Page Not Found</h1>
+        <p class="not-found-copy">The page you requested does not exist or may have moved.</p>
+
+        <p class="not-found-actions">
+            <a href="{{ "/" | relURL }}">Go home</a>
+            {{ if gt (len $entries) 0 }}
+            |
+            <a id="random-entry-link" href="{{ (index $entries 0).RelPermalink }}">Go off-track</a>
+            {{ end }}
+            |
+            <a href="{{ "/" | relURL }}" onclick="return goBackOrHome(event)">Go back</a>
+        </p>
+
+        {{ if gt (len $entries) 0 }}
+        <div id="random-entry-pool" hidden>
+            {{- range $entries }}
+            <a href="{{ .RelPermalink }}" data-section="{{ .Section | title }}">{{ .Title }}</a>
+            {{- end }}
+        </div>
+        {{ end }}
+    </article>
+</main>
+
+<script>
+function goBackOrHome(event) {
+    event.preventDefault();
+    var homeUrl = "{{ "/" | relURL }}";
+
+    try {
+        if (document.referrer) {
+            var referrerUrl = new URL(document.referrer);
+            if (referrerUrl.origin === window.location.origin && window.history.length > 1) {
+                window.history.back();
+                return false;
+            }
+        }
+    } catch (error) {}
+
+    window.location.href = homeUrl;
+    return false;
+}
+
+var randomEntries = Array.from(document.querySelectorAll("#random-entry-pool a"));
+
+if (randomEntries.length > 0) {
+    var randomEntry = randomEntries[Math.floor(Math.random() * randomEntries.length)];
+    var randomEntryLink = document.getElementById("random-entry-link");
+
+    if (randomEntryLink) {
+        randomEntryLink.href = randomEntry.getAttribute("href");
+    }
+}
+</script>
+{{ end }}

@@ -319,6 +319,102 @@ table td {
     margin: 0;
 }
 
+.not-found-page {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.not-found-card {
+    max-width: 42rem;
+    padding: 2rem 1rem;
+}
+
+.not-found-code {
+    margin: 0;
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: bold;
+    color: var(--maincolor);
+}
+
+.not-found-title {
+    margin: 0.4em 0 0.2em;
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+.not-found-title::before {
+    content: "";
+}
+
+.not-found-copy {
+    margin: 0 auto 1.2rem;
+    max-width: 34rem;
+}
+
+.not-found-actions {
+    margin: 0 0 1rem;
+}
+
+.not-found-actions a {
+    margin: 0 0.4rem;
+}
+
+.not-found-suggestion-label {
+    margin-bottom: 0.4rem;
+    color: #666;
+}
+
+.not-found-suggestion {
+    margin-top: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .not-found-code {
+        font-size: 2.3rem;
+    }
+
+    .not-found-title {
+        font-size: 1.5rem;
+    }
+}
+
 .post-header time {
     margin: 0;
+}
+
+@supports ((-webkit-mask-image: linear-gradient(#fff, #fff)) or (mask-image: linear-gradient(#fff, #fff))) {
+    /* Override two font glyphs with asymmetric mask-based variants. */
+    .ph-bold.ph-eyeglasses::before,
+    .ph-bold.ph-sunglasses::before {
+        content: "";
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.125em;
+        background-color: currentColor;
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        -webkit-mask-size: 100% 100%;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: 100% 100%;
+    }
+
+    .ph-bold.ph-eyeglasses::before {
+        width: 1.08em;
+        height: 1.08em;
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20256%20256%27%3E%3Cpath%20fill%3D%27white%27%20fill-rule%3D%27evenodd%27%20d%3D%27M200%2036a12%2012%200%200%200%200%2024%2012%2012%200%200%201%2012%2012v50.46A47.94%2047.94%200%200%200%20142.75%20148h-29.5A47.94%2047.94%200%200%200%2044%20122.46V72a12%2012%200%200%201%2012-12%2012%2012%200%200%200%200-24A36%2036%200%200%200%2020%2072v92a48%2048%200%200%200%2095.32%208h25.36A48%2048%200%200%200%20236%20164V72A36%2036%200%200%200%20200%2036Z%20M50%20140H86A6%206%200%200%201%2092%20146V182A6%206%200%200%201%2086%20188H50A6%206%200%200%201%2044%20182V146A6%206%200%200%201%2050%20140Z%20M188%20140A24%2024%200%201%201%20188%20188A24%2024%200%201%201%20188%20140Z%20M52%20148H84V152H52Z%20M52%20160H84V164H52Z%20M52%20172H84V176H52Z%20M172%20154H176V174H172Z%20M186%20148H190V180H186Z%20M200%20154H204V174H200Z%27%2F%3E%3C%2Fsvg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20256%20256%27%3E%3Cpath%20fill%3D%27white%27%20fill-rule%3D%27evenodd%27%20d%3D%27M200%2036a12%2012%200%200%200%200%2024%2012%2012%200%200%201%2012%2012v50.46A47.94%2047.94%200%200%200%20142.75%20148h-29.5A47.94%2047.94%200%200%200%2044%20122.46V72a12%2012%200%200%201%2012-12%2012%2012%200%200%200%200-24A36%2036%200%200%200%2020%2072v92a48%2048%200%200%200%2095.32%208h25.36A48%2048%200%200%200%20236%20164V72A36%2036%200%200%200%20200%2036Z%20M50%20140H86A6%206%200%200%201%2092%20146V182A6%206%200%200%201%2086%20188H50A6%206%200%200%201%2044%20182V146A6%206%200%200%201%2050%20140Z%20M188%20140A24%2024%200%201%201%20188%20188A24%2024%200%201%201%20188%20140Z%20M52%20148H84V152H52Z%20M52%20160H84V164H52Z%20M52%20172H84V176H52Z%20M172%20154H176V174H172Z%20M186%20148H190V180H186Z%20M200%20154H204V174H200Z%27%2F%3E%3C%2Fsvg%3E");
+    }
+
+    .ph-bold.ph-sunglasses::before {
+        width: 1.08em;
+        height: 1.08em;
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20256%20256%27%3E%3Cpath%20fill%3D%27white%27%20fill-rule%3D%27evenodd%27%20d%3D%27M200%2036a12%2012%200%200%200%200%2024%2012%2012%200%200%201%2012%2012v50.46A47.94%2047.94%200%200%200%20142.75%20148h-29.5A47.94%2047.94%200%200%200%2044%20122.46V72a12%2012%200%200%201%2012-12%2012%2012%200%200%200%200-24A36%2036%200%200%200%2020%2072v92a48%2048%200%200%200%2095.32%208h25.36A48%2048%200%200%200%20236%20164V72A36%2036%200%200%200%20200%2036Z%20M50%20140H86A6%206%200%200%201%2092%20146V182A6%206%200%200%201%2086%20188H50A6%206%200%200%201%2044%20182V146A6%206%200%200%201%2050%20140Z%20M188%20140A24%2024%200%201%201%20188%20188A24%2024%200%201%201%20188%20140Z%27%2F%3E%3C%2Fsvg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20256%20256%27%3E%3Cpath%20fill%3D%27white%27%20fill-rule%3D%27evenodd%27%20d%3D%27M200%2036a12%2012%200%200%200%200%2024%2012%2012%200%200%201%2012%2012v50.46A47.94%2047.94%200%200%200%20142.75%20148h-29.5A47.94%2047.94%200%200%200%2044%20122.46V72a12%2012%200%200%201%2012-12%2012%2012%200%200%200%200-24A36%2036%200%200%200%2020%2072v92a48%2048%200%200%200%2095.32%208h25.36A48%2048%200%200%200%20236%20164V72A36%2036%200%200%200%20200%2036Z%20M50%20140H86A6%206%200%200%201%2092%20146V182A6%206%200%200%201%2086%20188H50A6%206%200%200%201%2044%20182V146A6%206%200%200%201%2050%20140Z%20M188%20140A24%2024%200%201%201%20188%20188A24%2024%200%201%201%20188%20140Z%27%2F%3E%3C%2Fsvg%3E");
+    }
 }

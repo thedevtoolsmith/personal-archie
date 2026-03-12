@@ -127,3 +127,7 @@ a:hover {
   color: var(--darkMaincolor);
   background-color: var(--darkBlue);
 }
+
+.not-found-code {
+  color: var(--darkMaincolor);
+}

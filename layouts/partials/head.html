@@ -1,6 +1,6 @@
 <header>
 	<div class="main">
-		<a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+		<a href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
 	</div>
 	<nav>
 		{{ range .Site.Menus.main }}
@@ -8,8 +8,8 @@
 		{{ end }}
 		| <a class="soc" href="/index.xml" title="RSS Feed"><i class="ph-bold ph-rss-simple"></i></a>
 		{{ if eq .Site.Params.mode "toggle" -}}
-		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
-		<script src="{{ .Site.BaseURL }}js/themetoggle.js"></script>
+		| <a id="dark-mode-toggle" onclick="toggleTheme(); return false;" href="#"></a>
+		<script src="{{ "js/themetoggle.js" | relURL }}"></script>
 		{{ end }}
 	</nav>
 </header>

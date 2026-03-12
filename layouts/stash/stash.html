@@ -1,7 +1,7 @@
 {{ define "main" }}
-<h1 class="page-title">Stash</h1>
+<h1 class="page-title">{{ .Title }}</h1>
 
-<p>This is a collection of everything that I want to publish which is not a blog post.</p>
+<p>This is a collection of notes, snippets, quotes, and everything else I want to publish outside the blog.</p>
 
 <ul class="posts">
     {{- range .Data.Pages -}} 
