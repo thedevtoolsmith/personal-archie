@@ -1,6 +1,12 @@
 body {
   color: white;
   background-color: #282a36;
+  --outline-panel-bg: rgba(40, 42, 54, 0.97);
+  --outline-panel-shadow: 0 0.9rem 2.2rem rgba(0, 0, 0, 0.28);
+  --outline-toggle-bg: rgba(40, 42, 54, 0.84);
+  --outline-toggle-halo: rgba(40, 42, 54, 0.82);
+  --toc-accent: var(--darkMaincolor);
+  --headingcolor: #ddd;
 }
 
 ::-moz-selection {
@@ -45,7 +51,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #ddd;
+  color: var(--headingcolor);
 }
 
 h1::before {

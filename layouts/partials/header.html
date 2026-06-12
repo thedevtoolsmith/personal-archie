@@ -55,4 +55,6 @@
 		  {{- if isset .Site.Params "umamiid" }}
 		  <script defer src="https://cloud.umami.is/script.js" data-website-id="{{.Site.Params.umamiid}}"></script>
 		  {{- end }}
+		  {{ $mainscript := resources.Get "js/main.js" | fingerprint }}
+		  <script defer src="{{ $mainscript.RelPermalink }}"></script>
 		  </head>

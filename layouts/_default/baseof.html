@@ -2,7 +2,7 @@
 <html>
     {{- partial "header.html" . -}}
     <body>
-        <div class="content">
+        <div id="top" class="content{{ if and .IsPage (eq .Section "blog") }} content-wide{{ end }}">
         {{- partial "head.html" . -}}
         {{- block "main" . }}{{- end }}
         {{- partial "footer.html" . -}}

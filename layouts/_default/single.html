@@ -1,35 +1,63 @@
 {{ define "main" }}
-<main>
-	<article>
-		<div class="title">
-			<h1 class="title">{{ .Title }}</h1>
-			<div class="meta">{{ dateFormat "2 Jan 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</div>
-		</div>
-		{{ if isset .Params "tldr" }}
-		<div class="tldr">
-			<strong>tl;dr:</strong>
-			{{ .Params.tldr }}
-		</div>{{ end }}
+{{ $isBlogPost := eq .Section "blog" }}
+{{ $toc := "" }}
+{{ $hasToc := false }}
+{{ if $isBlogPost }}
+	{{ $toc = .Fragments.ToHTML 2 4 false }}
+	{{ $toc = replaceRE `<a href="([^"]+)"` `<a href="$1" data-toc-link onclick="window.flashTocTarget && window.flashTocTarget(this)"` $toc }}
+	{{ $hasToc = ne (replaceRE `\s+` "" $toc) `<navid="TableOfContents"></nav>` }}
+{{ end }}
+<main class="single-post-page">
+	<div class="post-layout{{ if $hasToc }} has-outline{{ end }}">
+		{{ if $hasToc }}
+		<aside class="post-outline" aria-label="Post outline" data-post-outline data-outline-open="false">
+				<div class="post-outline-panel" id="post-outline-panel" data-outline-panel aria-hidden="true">
+				<nav class="post-outline-top" aria-label="Back to top">
+					<ul>
+						<li><button type="button" data-scroll-top>&uarr; Top</button></li>
+					</ul>
+				</nav>
+				{{ $toc | safeHTML }}
+				<nav class="post-outline-bottom" aria-label="Jump to tags">
+					<ul>
+						<li><a href="#post-tags" data-toc-link onclick="window.flashTocTarget && window.flashTocTarget(this)">&darr; Tags</a></li>
+					</ul>
+				</nav>
+				</div>
+				<button type="button" class="post-outline-toggle" data-outline-toggle aria-expanded="false" aria-controls="post-outline-panel">&#9776; Index</button>
+			</aside>
+		{{ end }}
+		<article class="post-article">
+			<div class="title">
+				<h1 class="title">{{ .Title }}</h1>
+				<div class="meta">{{ dateFormat "2 Jan 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</div>
+			</div>
+			{{ if isset .Params "tldr" }}
+			<div class="tldr">
+				<strong>tl;dr:</strong>
+				{{ .Params.tldr }}
+			</div>{{ end }}
 
-		<section class="body">
-			{{ .Content }}
-		</section>
+			<section class="body post-body">
+				{{ .Content }}
+			</section>
 
-		<h2>Tags</h2>
+			<h2 id="post-tags">Tags</h2>
 
-		<div class="post-tags">
-			{{ if ne .Type "page" }}
-			{{ if gt .Params.tags 0 }}
-			<nav class="nav tags">
-				<ul class="tags">
-					{{ range .Params.tags }}
-					<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-					{{ end }}
-				</ul>
-			</nav>
-			{{ end }}
-			{{ end }}
-		</div>
-	</article>
+			<div class="post-tags">
+				{{ if ne .Type "page" }}
+				{{ if gt .Params.tags 0 }}
+				<nav class="nav tags">
+					<ul class="tags">
+						{{ range .Params.tags }}
+						<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+						{{ end }}
+					</ul>
+				</nav>
+				{{ end }}
+				{{ end }}
+			</div>
+		</article>
+	</div>
 </main>
 {{ end }}
