@@ -10,7 +10,9 @@
 	{{- end -}}
 
 	{{- if isset .Site.Params "favicon" -}}
-	<link rel="icon" type="image/png" href={{ .Site.Params.favicon | relURL }}/>
+	{{- $favicon := .Site.Params.favicon | relURL -}}
+	<link rel="icon" type="image/png" href="{{ $favicon }}">
+	<link rel="shortcut icon" href="{{ $favicon }}">
 	{{- end -}}
 
 	{{ $style := resources.Get "css/icons.css" | fingerprint }}
