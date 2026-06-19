@@ -438,6 +438,32 @@ table td {
     margin: 0;
 }
 
+.blog-list-item .post-header {
+    gap: 1rem;
+}
+
+.blog-list-item .post-header .title {
+    align-items: baseline;
+    display: flex;
+    flex: 1 1 auto;
+    gap: 0.35rem;
+    min-width: 0;
+}
+
+.blog-list-item .post-header .title a {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.blog-list-item .post-header time {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
 .not-found-page {
     min-height: 60vh;
     display: flex;
