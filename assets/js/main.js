@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/sw.js").catch((error) => {
+                console.error("Service worker registration failed:", error);
+            });
+        });
+    }
+
     const outlines = document.querySelectorAll("[data-post-outline]");
     const topLinks = document.querySelectorAll("[data-scroll-top]");
     const mobileOutlineMedia = window.matchMedia("(max-width: 979px)");

@@ -14,6 +14,13 @@
 	<link rel="icon" type="image/png" href="{{ $favicon }}">
 	<link rel="shortcut icon" href="{{ $favicon }}">
 	{{- end -}}
+	<link rel="manifest" href="{{ "manifest.webmanifest" | relURL }}">
+	<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="{{ with .Site.Params.pwa.shortName }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}">
+	<meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ with .Site.Params.pwa.themeColor }}{{ . }}{{ else }}#232333{{ end }}">
+	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#282a36">
 
 	{{ $style := resources.Get "css/icons.css" | fingerprint }}
 	<link href="{{ $style.RelPermalink }}" type="text/css" rel="stylesheet">
