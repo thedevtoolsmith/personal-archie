@@ -21,6 +21,7 @@
     const SHIP_POINTER_RESPONSE = 38;
     const SHIP_ANGLE_RESPONSE = 18;
     const SHIP_KEYBOARD_SPEED = 480;
+    const TOUCH_SHIP_OFFSET = 72;
     const POWER_UP_DROP_CHANCE = 0.04;
     const POWER_UP_LIFETIME = 8;
     const POWER_UP_RADIUS = 13;
@@ -451,7 +452,7 @@
         updateHelpText(pointerType = this.lastPointer.pointerType) {
             const touchInput = pointerType === "touch" || (!pointerType && this.coarsePointer);
             this.help.textContent = touchInput
-                ? "Drag to steer · Hold to fire · Collect glowing symbols"
+                ? "Drag below the ship · Hold to fire · Collect glowing symbols"
                 : "Move the pointer or use arrow keys to dodge · Click, hold, or press Space to fire · Collect glowing symbols";
         }
 
@@ -924,8 +925,9 @@
             }
 
             this.movementKeys.clear();
-            const nextX = clamp(event.clientX, 10, this.viewportWidth - 10);
-            const nextY = clamp(event.clientY, 10, this.viewportHeight - 10);
+            const pointer = this.pointerTarget(event);
+            const nextX = clamp(pointer.x, 10, this.viewportWidth - 10);
+            const nextY = clamp(pointer.y, 10, this.viewportHeight - 10);
             const deltaX = nextX - this.ship.targetX;
             const deltaY = nextY - this.ship.targetY;
 
@@ -943,8 +945,9 @@
             }
 
             const previousPointerType = this.lastPointer.pointerType;
-            this.lastPointer.x = event.clientX;
-            this.lastPointer.y = event.clientY;
+            const pointer = this.pointerTarget(event);
+            this.lastPointer.x = pointer.x;
+            this.lastPointer.y = pointer.y;
             this.lastPointer.seen = true;
 
             if (event.pointerType) {
@@ -958,6 +961,13 @@
                     this.showHelp();
                 }
             }
+        }
+
+        pointerTarget(event) {
+            return {
+                x: event.clientX,
+                y: event.clientY - (event.pointerType === "touch" ? TOUCH_SHIP_OFFSET : 0),
+            };
         }
 
         handlePointerDown(event) {
