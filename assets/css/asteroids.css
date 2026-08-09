@@ -1,0 +1,303 @@
+/* Text Asteroids */
+.text-asteroids-launcher {
+    align-items: center;
+    backdrop-filter: blur(0.55rem);
+    -webkit-backdrop-filter: blur(0.55rem);
+    background: var(--outline-toggle-bg, rgba(245, 245, 245, 0.88));
+    border: 2px solid var(--toc-accent, var(--maincolor));
+    border-radius: 999px;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    box-shadow: var(--outline-panel-shadow, 0 0.55rem 1.4rem rgba(35, 35, 51, 0.16));
+    color: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    gap: 0.5rem;
+    left: calc(1rem + env(safe-area-inset-left, 0px));
+    line-height: 1;
+    min-height: 44px;
+    padding: 0.68rem 0.9rem;
+    position: fixed;
+    text-transform: uppercase;
+    z-index: 30;
+}
+
+.text-asteroids-launcher:hover {
+    background: var(--toc-accent, var(--maincolor));
+    color: var(--selection-text, #fff);
+}
+
+.text-asteroids-launcher:focus-visible,
+.text-asteroids-exit:focus-visible,
+.text-asteroids-dialog__button:focus-visible {
+    outline: 3px solid var(--toc-accent, var(--maincolor));
+    outline-offset: 3px;
+}
+
+.text-asteroids-launcher:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.text-asteroids-launcher__ship {
+    display: inline-block;
+    font-size: 1rem;
+    transform: rotate(35deg);
+}
+
+.text-asteroids-game[hidden],
+.text-asteroids-launcher[hidden],
+.text-asteroids-status[hidden] {
+    display: none !important;
+}
+
+.text-asteroids-game {
+    cursor: none;
+    inset: 0;
+    overflow: hidden;
+    position: fixed;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    z-index: 2147483000;
+}
+
+.text-asteroids-canvas {
+    display: block;
+    height: 100%;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+}
+
+.text-asteroids-exit {
+    align-items: center;
+    backdrop-filter: blur(0.55rem);
+    -webkit-backdrop-filter: blur(0.55rem);
+    background: var(--outline-toggle-bg, rgba(245, 245, 245, 0.88));
+    border: 2px solid var(--toc-accent, var(--maincolor));
+    border-radius: 999px;
+    color: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    gap: 0.45rem;
+    min-height: 44px;
+    padding: 0.6rem 0.85rem;
+    position: absolute;
+    right: calc(1rem + env(safe-area-inset-right, 0px));
+    top: calc(1rem + env(safe-area-inset-top, 0px));
+    z-index: 2;
+}
+
+.text-asteroids-exit:hover {
+    background: var(--toc-accent, var(--maincolor));
+    color: var(--selection-text, #fff);
+}
+
+.text-asteroids-exit kbd {
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: 0.2rem;
+    color: inherit;
+    font: inherit;
+    font-size: 0.72rem;
+    line-height: 1;
+    padding: 0.18rem 0.28rem;
+}
+
+.text-asteroids-help {
+    backdrop-filter: blur(0.55rem);
+    -webkit-backdrop-filter: blur(0.55rem);
+    background: var(--outline-panel-bg, rgba(245, 245, 245, 0.94));
+    border: 2px solid var(--toc-accent, var(--maincolor));
+    border-radius: 999px;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    box-shadow: var(--outline-panel-shadow, 0 0.55rem 1.4rem rgba(35, 35, 51, 0.16));
+    color: inherit;
+    font-size: 0.76rem;
+    left: 50%;
+    margin: 0;
+    max-width: calc(100vw - 2rem);
+    padding: 0.65rem 0.9rem;
+    pointer-events: none;
+    position: absolute;
+    text-align: center;
+    transform: translateX(-50%);
+    transition: opacity 240ms ease;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.text-asteroids-help.is-dismissed {
+    opacity: 0;
+}
+
+.text-asteroids-dialog {
+    background: var(--outline-panel-bg, #f5f5f5);
+    border: 3px solid var(--toc-accent, var(--maincolor));
+    border-radius: 0.45rem;
+    box-shadow: var(--outline-panel-shadow, 0 1rem 3rem rgba(0, 0, 0, 0.3));
+    color: inherit;
+    font: inherit;
+    margin: auto;
+    max-width: min(32rem, calc(100vw - 2rem));
+    padding: 1.35rem;
+    text-align: center;
+}
+
+.text-asteroids-dialog:not([open]) {
+    display: none;
+}
+
+.text-asteroids-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.58);
+    backdrop-filter: blur(0.16rem);
+    -webkit-backdrop-filter: blur(0.16rem);
+}
+
+.text-asteroids-dialog.is-fallback {
+    box-shadow:
+        0 0 0 100vmax rgba(0, 0, 0, 0.58),
+        var(--outline-panel-shadow, 0 1rem 3rem rgba(0, 0, 0, 0.3));
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2147483647;
+}
+
+.text-asteroids-dialog h2 {
+    color: inherit;
+    margin: 0 0 0.7rem;
+}
+
+.text-asteroids-dialog h2::before {
+    content: none;
+}
+
+.text-asteroids-dialog p {
+    margin: 0 0 1.1rem;
+}
+
+.text-asteroids-dialog__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    justify-content: center;
+}
+
+.text-asteroids-dialog__button {
+    background: var(--toc-accent, var(--maincolor));
+    border: 2px solid var(--toc-accent, var(--maincolor));
+    border-radius: 0.25rem;
+    color: var(--selection-text, #fff);
+    cursor: pointer;
+    font: inherit;
+    min-height: 44px;
+    padding: 0.62rem 0.9rem;
+}
+
+.text-asteroids-dialog__button[hidden] {
+    display: none;
+}
+
+.text-asteroids-dialog__button--secondary {
+    background: transparent;
+    color: inherit;
+}
+
+.text-asteroids-dialog__button:hover {
+    filter: brightness(1.08);
+}
+
+.text-asteroids-status {
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+}
+
+html.text-asteroids-locked,
+html.text-asteroids-locked body {
+    overflow: hidden;
+}
+
+html.text-asteroids-locked body {
+    padding-right: var(--text-asteroids-scrollbar-width, 0px);
+}
+
+html.text-asteroids-active .text-asteroids-launcher {
+    display: none;
+}
+
+html.text-asteroids-active .content,
+html.text-asteroids-active .content * {
+    caret-color: transparent !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    text-decoration-color: transparent !important;
+    text-shadow: none !important;
+}
+
+html.text-asteroids-active .content {
+    pointer-events: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+}
+
+html.text-asteroids-active .content a {
+    border-bottom-color: transparent !important;
+}
+
+html.text-asteroids-active .content *::before,
+html.text-asteroids-active .content *::after {
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: none !important;
+}
+
+@media screen and (max-width: 520px) {
+    .text-asteroids-launcher {
+        border-radius: 50%;
+        justify-content: center;
+        padding: 0;
+        width: 44px;
+    }
+
+    .text-asteroids-launcher__label {
+        display: none;
+    }
+
+    .text-asteroids-help {
+        border-radius: 0.4rem;
+        white-space: normal;
+    }
+
+    .text-asteroids-exit kbd {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .text-asteroids-help {
+        transition: none;
+    }
+}
+
+@media print {
+    .text-asteroids-launcher,
+    .text-asteroids-game,
+    .text-asteroids-dialog,
+    .text-asteroids-status {
+        display: none !important;
+    }
+}
