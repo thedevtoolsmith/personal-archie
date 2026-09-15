@@ -1,0 +1,197 @@
+@font-face {
+    font-family: "Monocraft";
+    src: url("../fonts/Monocraft.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+/* A small corner companion, independent of the site header and article TOC. */
+.page-mascot {
+    position: fixed;
+    top: calc(1rem + env(safe-area-inset-top, 0px));
+    right: calc(2rem + env(safe-area-inset-right, 0px));
+    z-index: 19;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    max-width: min(22rem, calc(100vw - 3rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)));
+    pointer-events: none;
+}
+
+.page-mascot .mascot-button {
+    width: 96px;
+    height: 112px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    opacity: 1;
+    pointer-events: auto;
+    flex: none;
+}
+
+.page-mascot .mascot-button:enabled {
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.page-mascot .mascot-button:focus-visible,
+.page-mascot .mascot-play:focus-visible {
+    outline: 2px solid var(--toc-accent);
+    outline-offset: 3px;
+    border-radius: 0.35rem;
+}
+
+
+.page-mascot .mascot-bubble {
+    order: 0;
+    position: relative;
+    min-width: 96px;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    border: 12px solid transparent;
+    border-image: url("../images/mascot-bubble-frame.svg") 12 fill / 12px / 0 stretch;
+    filter: drop-shadow(4px 4px 0 var(--toc-accent));
+    border-radius: 0;
+    color: #232333;
+    font-family: "Monocraft", monospace;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    pointer-events: auto;
+}
+
+/* Keep scrolling inside the frame so the speech tail is never clipped. */
+.page-mascot .mascot-bubble-body {
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    min-width: 0;
+    max-height: min(calc(35dvh - 24px), calc(18rem - 24px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    box-sizing: border-box;
+    padding: 4px 6px;
+    background: url("../images/mascot-bubble-paper.svg") repeat;
+    background-size: 8px 8px;
+    image-rendering: pixelated;
+    scrollbar-width: thin;
+}
+
+.page-mascot .mascot-bubble::after {
+    content: "";
+    position: absolute;
+    right: 40px;
+    top: -24px;
+    width: 16px;
+    height: 16px;
+    background: url("../images/mascot-bubble-tail.svg") no-repeat;
+    transform: rotate(180deg);
+    pointer-events: none;
+}
+
+.page-mascot .mascot-play:focus-visible {
+    outline-color: #232333;
+    border-radius: 0;
+}
+
+.page-mascot .mascot-bubble p {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.page-mascot .mascot-play {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+/* Keep a complete accessible source without reserving the final box size. */
+.page-mascot [data-mascot-full-text] {
+    display: block;
+}
+
+.page-mascot .mascot-bubble:has([data-mascot-typed-text]:not([hidden])) [data-mascot-full-text] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.page-mascot [data-mascot-typed-text] {
+    display: block;
+    min-height: 1.5em;
+    pointer-events: none;
+}
+
+.page-mascot .mascot-play:enabled:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--toc-accent);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+}
+
+.page-mascot .mascot-play:disabled {
+    cursor: default;
+    opacity: 0.7;
+}
+
+.text-asteroids-active .page-mascot {
+    visibility: hidden;
+}
+
+
+.page-mascot [hidden] {
+    display: none;
+}
+
+.page-mascot .mascot-sprite {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: var(--mascot-directions);
+    background-size: 300% 300%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    /* A one-pixel, unblurred edge keeps the dark beard legible in both themes. */
+    filter: drop-shadow(1px 0 0 var(--headingcolor))
+        drop-shadow(-1px 0 0 var(--headingcolor))
+        drop-shadow(0 1px 0 var(--headingcolor));
+}
+
+
+.page-mascot .mascot-sprite[data-sheet="reactions"] {
+    background-image: var(--mascot-reactions);
+}
+
+@media (max-width: 600px) {
+    .page-mascot .mascot-button {
+        width: 72px;
+        height: 84px;
+    }
+}
+
+@media print {
+    .page-mascot {
+        display: none;
+    }
+}

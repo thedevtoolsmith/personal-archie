@@ -226,8 +226,9 @@
     };
 
     class TextAsteroids {
-        constructor(source) {
+        constructor(source, launcher) {
             this.source = source;
+            this.launcher = launcher;
             this.state = "idle";
             this.session = 0;
             this.animationFrame = 0;
@@ -296,27 +297,14 @@
             }
 
             this.bindEvents();
+            this.launcher.disabled = false;
         }
 
         createInterface() {
-            this.launcher = document.createElement("button");
-            this.launcher.type = "button";
-            this.launcher.className = "text-asteroids-launcher";
             this.launcher.setAttribute(UI_ATTRIBUTE, "");
             this.launcher.setAttribute("aria-label", "Play Asteroids with the visible text on this page");
             this.launcher.setAttribute("aria-keyshortcuts", "Alt+Shift+A");
             this.launcher.title = "Play text Asteroids (Alt+Shift+A)";
-
-            const launcherShip = document.createElement("span");
-            launcherShip.className = "text-asteroids-launcher__ship";
-            launcherShip.setAttribute("aria-hidden", "true");
-            launcherShip.textContent = "▲";
-
-            const launcherLabel = document.createElement("span");
-            launcherLabel.className = "text-asteroids-launcher__label";
-            launcherLabel.textContent = "Asteroids";
-
-            this.launcher.append(launcherShip, launcherLabel);
 
             this.stage = document.createElement("div");
             this.stage.className = "text-asteroids-game";
@@ -390,7 +378,7 @@
 
             this.dialogActions.append(this.restartButton, this.dialogButton);
             this.dialog.append(this.dialogTitle, this.dialogMessage, this.dialogActions);
-            document.body.append(this.launcher, this.stage, this.status, this.dialog);
+            document.body.append(this.stage, this.status, this.dialog);
         }
 
         bindEvents() {
@@ -2327,9 +2315,12 @@
 
     const initialize = () => {
         const source = document.querySelector(SOURCE_SELECTOR);
+        // A configured mascot message omits this button, including the shortcut.
+        const launcher = document.querySelector('[data-mascot-play]');
 
         if (
             !source ||
+            !launcher ||
             !document.body ||
             !HTMLCanvasElement.prototype.getContext ||
             typeof Intl === "undefined" ||
@@ -2338,7 +2329,7 @@
             return;
         }
 
-        new TextAsteroids(source);
+        new TextAsteroids(source, launcher);
     };
 
     if (document.readyState === "loading") {

@@ -48,6 +48,12 @@
 		  {{ $asteroidsStyle := resources.Get "css/asteroids.css" | fingerprint }}
 		  <link rel="stylesheet" type="text/css" href="{{ $asteroidsStyle.RelPermalink }}">
 
+		  {{ $mascotStyle := resources.Get "css/mascot.css" | fingerprint }}
+		  <link rel="preload" as="image" href="{{ "mascots/surya-reactions.png" | relURL }}">
+		  <link rel="stylesheet" type="text/css" href="{{ $mascotStyle.RelPermalink }}">
+		  {{ $mascotScript := resources.Get "js/mascot.js" | fingerprint }}
+		  <script defer src="{{ $mascotScript.RelPermalink }}"></script>
+
 		  <!-- Custom CSS style get applied last -->
 		  {{- if isset .Site.Params "customcss" }}
 		  {{ range .Site.Params.customCSS }}

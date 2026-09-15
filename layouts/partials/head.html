@@ -1,3 +1,4 @@
+{{/* This is Archie's body header, not the document <head> (header.html). */}}
 <header>
 	<div class="main">
 		<a href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
@@ -13,3 +14,4 @@
 		{{ end }}
 	</nav>
 </header>
+{{ partial "mascot.html" . }}

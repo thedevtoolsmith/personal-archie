@@ -1,0 +1,19 @@
+{{- $message := "" -}}
+{{- if eq (printf "%T" .Params.mascot_message) "string" -}}
+	{{- $message = strings.TrimSpace .Params.mascot_message -}}
+{{- end -}}
+<div class="page-mascot" data-page-mascot data-text-asteroids-ui>
+<button type="button" class="mascot-button" data-mascot-button disabled aria-label="Toggle mascot message" aria-expanded="true" aria-controls="mascot-bubble">
+	<span class="mascot-sprite" data-mascot-sprite aria-hidden="true" style="--mascot-directions: url('{{ "mascots/surya-directions.png" | relURL }}'); --mascot-reactions: url('{{ "mascots/surya-reactions.png" | relURL }}');"></span>
+</button>
+<div class="mascot-bubble" id="mascot-bubble" data-mascot-bubble>
+	<div class="mascot-bubble-body" data-mascot-bubble-body>
+	{{- with $message }}
+	<p data-mascot-message><span data-mascot-full-text>{{ . }}</span><span data-mascot-typed-text aria-hidden="true" hidden></span></p>
+	{{- else }}
+	<button type="button" class="mascot-play" data-mascot-play disabled><span data-mascot-full-text>wanna see something cool?</span><span data-mascot-typed-text aria-hidden="true" hidden></span></button>
+	{{- end }}
+	</div>
+
+</div>
+</div>
