@@ -489,6 +489,11 @@
                 }
 
                 this.begin(glyphs);
+                try {
+                    window.umami?.track?.("asteroids-start");
+                } catch (_) {
+                    // Analytics must not interrupt a game that has already started.
+                }
             } catch (error) {
                 console.error("Text Asteroids could not start:", error);
                 this.teardown({ restoreFocus: true });

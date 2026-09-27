@@ -158,6 +158,17 @@ class MascotBrowserTests(unittest.TestCase):
         self.page.wait_for_function("document.documentElement.classList.contains('text-asteroids-active')")
         self.assertGreater(int(self.page.locator('.text-asteroids-canvas').get_attribute('data-remaining')), 0)
 
+    def test_successful_game_launches_track_umami_once_each(self):
+        self.page.add_init_script("window.trackedEvents = []; window.umami = { track: name => trackedEvents.push(name) };")
+        self.visit()
+        self.page.locator('[data-mascot-play]').click()
+        self.page.wait_for_function("trackedEvents.length === 1")
+        self.assertEqual(self.page.evaluate('trackedEvents'), ['asteroids-start'])
+        self.page.locator('.text-asteroids-exit').click()
+        self.page.keyboard.press('Alt+Shift+A')
+        self.page.wait_for_function("trackedEvents.length === 2")
+        self.assertEqual(self.page.evaluate('trackedEvents'), ['asteroids-start', 'asteroids-start'])
+
     def test_site_icons_and_theme_switch_remain_accessible(self):
         self.visit()
         self.assertEqual(self.page.locator('html').get_attribute('lang'), 'en')

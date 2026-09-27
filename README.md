@@ -66,6 +66,8 @@ On invitation pages, Enter/Space with the invitation focused, or Alt+Shift+A,
 also starts the game. The mascot
 is hidden and excluded from the game's text capture during play. Exit/Escape
 restores the page and launcher focus. Message pages cannot launch via the shortcut.
+Each successful launch records an `asteroids-start` event in Umami when the
+tracker is available.
 
 ### Interaction and accessibility
 
