@@ -28,3 +28,6 @@ Temporary Items
 
 .codex
 .entire
+.venv-mascot/
+__pycache__/
+*.py[cod]

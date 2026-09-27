@@ -8,9 +8,10 @@
 		<a href="{{ .URL }}">{{ .Name }}</a>
 		{{ end }}
 		| <a class="soc" href="/index.xml" title="RSS Feed"><i class="ph-bold ph-rss-simple"></i></a>
-		{{ if eq .Site.Params.mode "toggle" -}}
-		| <a id="dark-mode-toggle" onclick="toggleTheme(); return false;" href="#"></a>
-		<script src="{{ "js/themetoggle.js" | relURL }}"></script>
+		{{ if eq (.Site.Params.mode | default "toggle") "toggle" -}}
+		| <a id="dark-mode-toggle" onclick="toggleTheme(); return false;" href="#" aria-label="Switch to dark mode"></a>
+		{{ $themeScript := resources.Get "js/themetoggle.js" | minify | fingerprint }}
+		<script src="{{ $themeScript.RelPermalink }}"></script>
 		{{ end }}
 	</nav>
 </header>

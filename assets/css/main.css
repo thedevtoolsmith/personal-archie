@@ -81,6 +81,20 @@ ul > li::before {
     font-weight: bold;
 }
 
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0;
+}
+
+.pagination > li {
+    text-indent: 0;
+}
+
+.pagination > li::before {
+    content: none;
+}
+
 /* Images */
 img {
     /* border: 3px solid #ececec; */

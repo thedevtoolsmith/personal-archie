@@ -11,5 +11,5 @@
     font-family: 'Monaspace Neon';
     font-style: normal;
     font-weight: normal;
-    src: url('../fonts/monaspace-neon-regular.woff2') format('woff2'),
+    src: url('../fonts/monaspace-neon-regular.woff2') format('woff2');
 }

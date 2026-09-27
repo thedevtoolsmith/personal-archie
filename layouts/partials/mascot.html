@@ -2,9 +2,11 @@
 {{- if eq (printf "%T" .Params.mascot_message) "string" -}}
 	{{- $message = strings.TrimSpace .Params.mascot_message -}}
 {{- end -}}
-<div class="page-mascot" data-page-mascot data-text-asteroids-ui>
+{{- $mascotStem := partial "mascot-sprite-stem.html" . -}}
+{{- $mascotBlink := partial "mascot-blink-path.html" . -}}
+<div class="page-mascot" data-page-mascot data-text-asteroids-ui data-mascot-side="left" data-mascot-vertical="bottom" data-mascot-message-duration-seconds="{{ .Site.Params.mascotMessageDurationSeconds | default 5 }}">
 <button type="button" class="mascot-button" data-mascot-button disabled aria-label="Toggle mascot message" aria-expanded="true" aria-controls="mascot-bubble">
-	<span class="mascot-sprite" data-mascot-sprite aria-hidden="true" style="--mascot-directions: url('{{ "mascots/surya-directions.png" | relURL }}'); --mascot-reactions: url('{{ "mascots/surya-reactions.png" | relURL }}');"></span>
+	<span class="mascot-sprite" data-mascot-sprite aria-hidden="true" style="--mascot-directions: url('{{ printf "mascots/%s-directions.png" $mascotStem | relURL }}'); --mascot-blink: url('{{ $mascotBlink | relURL }}');{{ if ne $mascotStem "surya" }} --mascot-blink-size: 100% 100%;{{ end }}"></span>
 </button>
 <div class="mascot-bubble" id="mascot-bubble" data-mascot-bubble>
 	<div class="mascot-bubble-body" data-mascot-bubble-body>

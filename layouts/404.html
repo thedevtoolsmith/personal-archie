@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{ $entries := where (where .Site.RegularPages "Section" "in" (slice "blog" "stash")) "Title" "ne" "" }}
-<main class="not-found-page">
+<div class="not-found-page">
     <article class="not-found-card">
         <p class="not-found-code">404</p>
         <h1 class="not-found-title">Page Not Found</h1>
@@ -24,7 +24,7 @@
         </div>
         {{ end }}
     </article>
-</main>
+</div>
 
 <script>
 function goBackOrHome(event) {

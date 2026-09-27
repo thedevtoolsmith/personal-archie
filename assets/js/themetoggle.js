@@ -2,10 +2,12 @@ function setTheme(mode) {
     localStorage.setItem("theme-storage", mode);
     if (mode === "dark") {
         document.getElementById("darkModeStyle").disabled=false;
-        document.getElementById("dark-mode-toggle").innerHTML = "<i class=\"ph-bold ph-sunglasses\"></i>";
+        document.getElementById("dark-mode-toggle").innerHTML = "<i class=\"ph-bold ph-sunglasses\" aria-hidden=\"true\"></i>";
+        document.getElementById("dark-mode-toggle").setAttribute("aria-label", "Switch to light mode");
     } else if (mode === "light") {
         document.getElementById("darkModeStyle").disabled=true;
-        document.getElementById("dark-mode-toggle").innerHTML = "<i class=\"ph-bold ph-eyeglasses\"></i>";
+        document.getElementById("dark-mode-toggle").innerHTML = "<i class=\"ph-bold ph-eyeglasses\" aria-hidden=\"true\"></i>";
+        document.getElementById("dark-mode-toggle").setAttribute("aria-label", "Switch to dark mode");
         
     }
 }

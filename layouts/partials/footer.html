@@ -1,7 +1,9 @@
 <footer>
       <hr>
+      <div class="footer-links">
       {{- range $index, $key := .Site.Params.Social -}}
       <a class="soc" href="{{ $key.url }}" title="{{ $key.name }}"><i class="ph-bold ph-{{ $key.icon }}"></i></a>
       |&nbsp;
       {{- end -}}
+      </div>
 </footer>

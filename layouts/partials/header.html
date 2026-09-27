@@ -9,11 +9,9 @@
 	<title>{{ $title }} - {{ $siteTitle }}</title>
 	{{- end -}}
 
-	{{- if isset .Site.Params "favicon" -}}
-	{{- $favicon := .Site.Params.favicon | relURL -}}
+	{{- $favicon := .Site.Params.favicon | default "favicon.png" | relURL -}}
 	<link rel="icon" type="image/png" href="{{ $favicon }}">
 	<link rel="shortcut icon" href="{{ $favicon }}">
-	{{- end -}}
 	<link rel="manifest" href="{{ "manifest.webmanifest" | relURL }}">
 	<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
 	<meta name="mobile-web-app-capable" content="yes">
@@ -22,7 +20,7 @@
 	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f5">
 	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#282a36">
 
-	{{ $style := resources.Get "css/icons.css" | fingerprint }}
+	{{ $style := resources.Get "css/icons.css" | minify | fingerprint }}
 	<link href="{{ $style.RelPermalink }}" type="text/css" rel="stylesheet">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,31 +31,30 @@
 	{{ printf `<link rel="%s" type="%s" href="%s" title="%s"/>` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
 	{{ end -}}
 
-	{{ $fontstyle := resources.Get "css/fonts.css" | fingerprint }}
+	{{ $fontstyle := resources.Get "css/fonts.css" | minify | fingerprint }}
 	<link href="{{ $fontstyle.RelPermalink }}" rel="stylesheet">
 
 
-	{{ $style := resources.Get "css/main.css" | fingerprint }}
+	{{ $style := resources.Get "css/main.css" | minify | fingerprint }}
 	<link rel="stylesheet" type="text/css" media="screen" href="{{ $style.RelPermalink }}"/>
 
-	{{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "dark") (eq .Site.Params.mode "toggle") -}}
-	{{ $darkstyle := resources.Get "css/dark.css" | fingerprint }}
-	<link id="darkModeStyle" rel="stylesheet" type="text/css" href="{{ $darkstyle.RelPermalink }}" {{ if eq .Site.Params.mode "auto" }}media="(prefers-color-scheme: dark)"{{ end }} {{ if eq .Site.Params.mode "toggle" }}disabled{{ end }} />
+	{{- $mode := .Site.Params.mode | default "toggle" -}}
+	{{- if or (eq $mode "auto") (eq $mode "dark") (eq $mode "toggle") -}}
+	{{ $darkstyle := resources.Get "css/dark.css" | minify | fingerprint }}
+	<link id="darkModeStyle" rel="stylesheet" type="text/css" href="{{ $darkstyle.RelPermalink }}" {{ if eq $mode "auto" }}media="(prefers-color-scheme: dark)"{{ end }} {{ if eq $mode "toggle" }}disabled{{ end }} />
 		  {{ end }}
 
-		  {{ $asteroidsStyle := resources.Get "css/asteroids.css" | fingerprint }}
-		  <link rel="stylesheet" type="text/css" href="{{ $asteroidsStyle.RelPermalink }}">
-
-		  {{ $mascotStyle := resources.Get "css/mascot.css" | fingerprint }}
-		  <link rel="preload" as="image" href="{{ "mascots/surya-reactions.png" | relURL }}">
+		  {{ $mascotStyle := resources.Get "css/mascot.css" | minify | fingerprint }}
+		  {{ $mascotBlink := partial "mascot-blink-path.html" . }}
+		  <link rel="preload" as="image" href="{{ $mascotBlink | relURL }}">
 		  <link rel="stylesheet" type="text/css" href="{{ $mascotStyle.RelPermalink }}">
-		  {{ $mascotScript := resources.Get "js/mascot.js" | fingerprint }}
-		  <script defer src="{{ $mascotScript.RelPermalink }}"></script>
+			  {{ $mascotScript := resources.Get "js/mascot.js" | js.Build (dict "targetPath" "js/mascot.js" "minify" true) | fingerprint }}
+			  <script type="module" defer src="{{ $mascotScript.RelPermalink }}"></script>
 
 		  <!-- Custom CSS style get applied last -->
 		  {{- if isset .Site.Params "customcss" }}
 		  {{ range .Site.Params.customCSS }}
-		  {{ $customstyle := resources.Get . | fingerprint }}
+		  {{ $customstyle := resources.Get . | minify | fingerprint }}
 		  <link rel="stylesheet" type="text/css" href="{{ $customstyle.RelPermalink }}">
 		  {{ end }}
 		  {{- end -}}
@@ -73,8 +70,10 @@
 		  {{- if isset .Site.Params "umamiid" }}
 		  <script defer src="https://cloud.umami.is/script.js" data-website-id="{{.Site.Params.umamiid}}"></script>
 		  {{- end }}
-		  {{ $mainscript := resources.Get "js/main.js" | fingerprint }}
+		  {{ $mainscript := resources.Get "js/main.js" | minify | fingerprint }}
 		  <script defer src="{{ $mainscript.RelPermalink }}"></script>
-		  {{ $asteroidsScript := resources.Get "js/asteroids.js" | fingerprint }}
-		  <script defer src="{{ $asteroidsScript.RelPermalink }}"></script>
+		  {{ $asteroidsStyle := resources.Get "css/asteroids.css" | minify | fingerprint }}
+		  {{ $asteroidsScript := resources.Get "js/asteroids.js" | minify | fingerprint }}
+		  {{ $asteroidsLoader := resources.Get "js/asteroids-loader.js" | minify | fingerprint }}
+		  <script defer src="{{ $asteroidsLoader.RelPermalink }}" data-asteroids-script="{{ $asteroidsScript.RelPermalink }}" data-asteroids-style="{{ $asteroidsStyle.RelPermalink }}"></script>
 		  </head>

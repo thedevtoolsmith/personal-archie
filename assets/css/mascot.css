@@ -1,23 +1,27 @@
 @font-face {
     font-family: "Monocraft";
-    src: url("../fonts/Monocraft.ttf") format("truetype");
+    src: url("../fonts/Monocraft.woff2") format("woff2");
     font-style: normal;
     font-weight: 400;
     font-display: swap;
 }
 
-/* A small corner companion, independent of the site header and article TOC. */
+/* A draggable viewport companion, independent of the site header and article TOC. */
 .page-mascot {
     position: fixed;
-    top: calc(1rem + env(safe-area-inset-top, 0px));
-    right: calc(2rem + env(safe-area-inset-right, 0px));
-    z-index: 19;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    left: calc(2rem + env(safe-area-inset-left, 0px));
+    z-index: 30;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 1rem;
     max-width: min(22rem, calc(100vw - 3rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)));
     pointer-events: none;
+}
+
+.page-mascot[data-mascot-side="left"] {
+    align-items: flex-start;
 }
 
 .page-mascot .mascot-button {
@@ -34,8 +38,14 @@
 }
 
 .page-mascot .mascot-button:enabled {
-    cursor: pointer;
-    touch-action: manipulation;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.page-mascot[data-dragging="true"] .mascot-button:enabled {
+    cursor: grabbing;
 }
 
 .page-mascot .mascot-button:focus-visible,
@@ -48,9 +58,12 @@
 
 .page-mascot .mascot-bubble {
     order: 0;
-    position: relative;
+    position: absolute;
+    bottom: calc(100% + 1rem);
+    right: 0;
+    width: max-content;
     min-width: 96px;
-    max-width: 100%;
+    max-width: min(22rem, calc(100vw - 3rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)));
     box-sizing: border-box;
     margin-bottom: 0;
     border: 12px solid transparent;
@@ -86,12 +99,38 @@
     content: "";
     position: absolute;
     right: 40px;
-    top: -24px;
+    bottom: -24px;
     width: 16px;
     height: 16px;
     background: url("../images/mascot-bubble-tail.svg") no-repeat;
-    transform: rotate(180deg);
+    transform: scaleX(-1);
     pointer-events: none;
+}
+
+.page-mascot[data-mascot-side="left"] .mascot-bubble::after {
+    left: 40px;
+    right: auto;
+    transform: none;
+}
+
+.page-mascot[data-mascot-side="left"] .mascot-bubble {
+    left: 0;
+    right: auto;
+}
+
+.page-mascot[data-mascot-vertical="top"] .mascot-bubble {
+    bottom: auto;
+    top: calc(100% + 1rem);
+}
+
+.page-mascot[data-mascot-vertical="top"] .mascot-bubble::after {
+    bottom: auto;
+    top: -24px;
+    transform: rotate(180deg);
+}
+
+.page-mascot[data-mascot-side="left"][data-mascot-vertical="top"] .mascot-bubble::after {
+    transform: scaleY(-1);
 }
 
 .page-mascot .mascot-play:focus-visible {
@@ -180,7 +219,44 @@
 
 
 .page-mascot .mascot-sprite[data-sheet="reactions"] {
-    background-image: var(--mascot-reactions);
+    background-image: var(--mascot-blink);
+    background-size: var(--mascot-blink-size, 300% 300%);
+}
+
+/* Pretext supplies the line breaks; these boxes place its lines around the portrait. */
+.mascot-flow-active {
+    max-width: 100%;
+    min-width: 0;
+    position: relative;
+}
+
+.mascot-flow-active::before {
+    content: none !important;
+}
+
+.mascot-flow-cloned-ancestor::before {
+    content: none !important;
+}
+
+.mascot-flow-layer {
+    display: block;
+    max-width: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.mascot-flow-line {
+    display: block;
+    position: absolute;
+    height: 1lh;
+    line-height: inherit;
+    overflow: visible;
+    text-indent: 0;
+    white-space: nowrap;
+}
+
+.mascot-flow-fragment {
+    display: inline;
 }
 
 @media (max-width: 600px) {
