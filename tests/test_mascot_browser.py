@@ -112,7 +112,7 @@ class MascotBrowserTests(unittest.TestCase):
         self.visit()
         self.assertEqual(self.page.locator('[data-mascot-play]').count(), 1, 'Missing messages offer the game')
         play = self.page.locator('[data-mascot-play]')
-        expect(play.locator('[data-mascot-full-text]')).to_have_text('wanna see something cool?')
+        expect(play.locator('[data-mascot-full-text]')).to_have_text('wanna see something cool? click here :-}')
         expect(play).to_have_accessible_name('Play Asteroids with the visible text on this page')
         expect(play).to_be_enabled()
         self.assertEqual(self.page.locator('.text-asteroids-launcher').count(), 0)
@@ -368,7 +368,7 @@ class MascotBrowserTests(unittest.TestCase):
 
     def test_desktop_invitation_and_all_gaze_directions(self):
         self.visit()
-        expect(self.page.locator("[data-mascot-full-text]")).to_have_text("wanna see something cool?")
+        expect(self.page.locator("[data-mascot-full-text]")).to_have_text("wanna see something cool? click here :-}")
         button = self.page.locator("[data-mascot-button]")
         sprite = self.page.locator("[data-mascot-sprite]")
         box = button.bounding_box()
@@ -425,7 +425,7 @@ class MascotBrowserTests(unittest.TestCase):
         self.page.locator("[data-mascot-button]").press("Enter")
         expect(bubble).to_be_visible()
         self.visit("/mascot-qa-blank/")
-        expect(self.page.locator("[data-mascot-full-text]")).to_have_text("wanna see something cool?")
+        expect(self.page.locator("[data-mascot-full-text]")).to_have_text("wanna see something cool? click here :-}")
 
     def test_mobile_layout_and_toggle_target(self):
         self.page.set_viewport_size({"width": 390, "height": 844})
@@ -520,7 +520,7 @@ class MascotBrowserTests(unittest.TestCase):
         self.page.emulate_media(reduced_motion='reduce')
         self.visit()
         full = self.page.locator('[data-mascot-full-text]')
-        expect(full).to_have_text('wanna see something cool?')
+        expect(full).to_have_text('wanna see something cool? click here :-}')
         self.assertEqual(full.evaluate('el => getComputedStyle(el).opacity'), '1')
         expect(self.page.locator('[data-mascot-typed-text]')).to_be_hidden()
         self.page.clock.run_for(4900)
@@ -557,7 +557,7 @@ class MascotBrowserTests(unittest.TestCase):
             expect(page.locator("[data-mascot-message]")).to_have_text(MESSAGE)
             expect(page.locator("[data-mascot-dismiss]")).to_be_hidden()
             page.goto(self.url)
-            expect(page.locator('[data-mascot-play]')).to_have_text('wanna see something cool?')
+            expect(page.locator('[data-mascot-play]')).to_have_text('wanna see something cool? click here :-}')
             expect(page.locator('[data-mascot-play]')).to_be_disabled()
             self.assertEqual(page.locator('.text-asteroids-game').count(), 0)
         finally:

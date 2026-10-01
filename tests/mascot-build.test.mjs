@@ -164,7 +164,7 @@ test('trimmed top-level strings render escaped messages and other values retain 
       assertBubbleToggle(fallback);
       assert.doesNotMatch(fallback, /data-mascot-message(?:\s|=|>)/);
       assert.match(fallback, /data-mascot-play[^>]*disabled[^>]*>/);
-      assert.match(fallback, /data-mascot-full-text>wanna see something cool\?<\/span>/);
+      assert.match(fallback, /data-mascot-full-text>wanna see something cool\? click here :-}<\/span>/);
     }
     assert.match(site.asset(html.match(/href="([^\"]*\/css\/mascot\.min\.[a-f0-9]+\.css)"/)[1]), /\.page-mascot \.mascot-bubble/);
   } finally {

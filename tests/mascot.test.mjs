@@ -49,7 +49,7 @@ function setup({ fine = true, reduced = false, message = false, text, random = [
   button.setAttribute('aria-controls', 'mascot-bubble');
   button.setAttribute('aria-expanded', 'true');
   button.setAttribute('aria-label', 'Toggle mascot message');
-  const full = { textContent: text ?? (message ? 'A complete <safe> message.' : 'wanna see something cool?'), style: {} };
+  const full = { textContent: text ?? (message ? 'A complete <safe> message.' : 'wanna see something cool? click here :-}'), style: {} };
   const typed = { textContent: '', hidden: true };
   const bubble = { id: 'mascot-bubble', hidden: false, dataset: {} };
   const bubbleChild = new Target();
